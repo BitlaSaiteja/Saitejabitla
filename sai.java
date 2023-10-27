@@ -1,198 +1,232 @@
-// Java program to create a simple calculator
-// with basic +, -, /, * using java swing elements
+import java.util.*;
+import java.lang.*;
 
-import java.awt.event.*;
-import javax.swing.*;
-import java.awt.*;
-class w  implements ActionListener {
-    static JFrame p;
+import static java.lang.System.exit;
 
-    static JTextField l;
+public class sai extends Thread{
+    static        HashMap<Integer,String >list=new HashMap<>();
+static        HashMap<String,Integer> mylist=new HashMap<>();
 
-    String s0, s1, s2;
+    static   Scanner s=new Scanner(System.in);
+public void run(){
+    try{
+        System.out.println("############################---Billing Section---#############################");
+        int bill;
+        int total=0;
+        if(mylist.containsKey("rice")){
+            bill= mylist.get("rice")*45;
+            total+=bill;
+        }
 
-    w()
-    {
-        s0 = s1 = s2 = "";
+        if (mylist.containsKey("dal")) {
+            bill=mylist.get("dal")*50;
+            total+=bill;
+
+        }
+
+        if (mylist.containsKey("shampoo")) {
+            bill=mylist.get("shampoo")*90;
+            total+=bill;
+
+        }
+
+        if (mylist.containsKey("oil")) {
+            bill=mylist.get("oil")*110;
+            total+=bill;
+        }
+
+        if (mylist.containsKey("soap")) {
+            bill=mylist.get("soap")*30;
+            total+=bill;
+
+        }
+
+        if (mylist.containsKey("sugar")) {
+            bill=mylist.get("sugar")*60;
+            total+=bill;
+
+        }
+
+        if (mylist.containsKey("cooldrinks")) {
+            bill=mylist.get("cooldrinks")*85;
+            total+=bill;
+
+        }
+
+        if (mylist.containsKey("millets")) {
+            bill=mylist.get("millets")*55;
+            total+=bill;
+        }
+        System.out.println();
+        System.out.println("The M.R.P is:------>Rs "+total+" only");
+        String cupoun;
+        double discount;
+        System.out.println("Use 'MY_DISCOUNT' coupon for 25% OFF! ");
+        cupoun=s.next();
+        if(cupoun.equalsIgnoreCase("my_discount")) {
+            System.out.println("Bill Generating.....");
+            Thread.sleep(1000);
+            System.out.print("....................");
+            Thread.sleep(1050);
+            System.out.print("....................");
+            Thread.sleep(750);
+            System.out.println("");
+            System.out.println("Bill Generated!");
+            Thread.sleep(800);
+            System.out.println("\nHurray 25% OFF Coupon Applied! ");
+            double off = total * (0.25);
+            discount = total - off;
+            double _final = discount;
+            double GST;
+            GST = total * (0.05);
+            _final += GST;
+            System.out.println("GST------------------------>:" + GST);
+            System.out.println("Final price is including GST: " + _final);
+            System.out.println("Congrats! you saved "+off);
+        }else {
+            double GST=total*0.05;
+            double mrp=GST+total;
+            System.out.println("The M.R.P is:------>Rs "+mrp+" included GST");
+        }
+    }catch (Exception e){
+        System.out.println(e);
     }
 
-    public static void main(String args[])
-    {
-        p = new JFrame("calculator");
-
-
-        w c = new w();
-
-        l = new JTextField();
-
-        l.setEditable(false);
-
-        JButton b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, ba, bs, bd, bm, be, beq, beq1;
-
-        b0 = new JButton("0");
-        b0.setBackground(Color.BLUE);
-        b1 = new JButton("1");
-        b0.setBackground(Color.BLUE);
-
-        b2 = new JButton("2");
-        b0.setBackground(Color.BLUE);
-
-        b3 = new JButton("3");
-        b0.setBackground(Color.BLUE);
-
-        b4 = new JButton("4");
-        b0.setBackground(Color.BLUE);
-
-        b5 = new JButton("5");
-        b0.setBackground(Color.BLUE);
-
-        b6 = new JButton("6");
-        b0.setBackground(Color.BLUE);
-
-        b7 = new JButton("7");
-        b0.setBackground(Color.BLUE);
-
-        b8 = new JButton("8");
-        b0.setBackground(Color.BLUE);
-
-        b9 = new JButton("9");
-
-        b0.setBackground(Color.BLUE);
-
-        beq1 = new JButton("=");
-
-        ba = new JButton("+");
-        b0.setBackground(Color.CYAN);
-
-        bs = new JButton("-");
-        b0.setBackground(Color.CYAN);
-
-        bd = new JButton("/");
-        b0.setBackground(Color.CYAN);
-
-        bm = new JButton("*");
-        b0.setBackground(Color.CYAN);
-
-        beq = new JButton("C");
-        b0.setBackground(Color.CYAN);
-
-        be = new JButton(".");
-        b0.setBackground(Color.CYAN);
-
-
-        bm.addActionListener(c);
-        bd.addActionListener(c);
-        bs.addActionListener(c);
-        ba.addActionListener(c);
-        b9.addActionListener(c);
-        b8.addActionListener(c);
-        b7.addActionListener(c);
-        b6.addActionListener(c);
-        b5.addActionListener(c);
-        b4.addActionListener(c);
-        b3.addActionListener(c);
-        b2.addActionListener(c);
-        b1.addActionListener(c);
-        b0.addActionListener(c);
-        be.addActionListener(c);
-        beq.addActionListener(c);
-        beq1.addActionListener(c);
-
-        // add elements to panel
-        p.add(l);
-        p.add(ba);
-        p.add(b1);
-        p.add(b2);
-        p.add(b3);
-        p.add(bs);
-        p.add(b4);
-        p.add(b5);
-        p.add(b6);
-        p.add(bm);
-        p.add(b7);
-        p.add(b8);
-        p.add(b9);
-        p.add(bd);
-        p.add(be);
-        p.add(b0);
-        p.add(beq);
-        p.add(beq1);
-
-        p.setBackground(Color.blue);
-
-        p.add(p);
-        p.setLayout(new GridLayout(4,4));
-        p.setSize(1920, 1080);
-        p.setVisible(true);    }
-    public void actionPerformed(ActionEvent e)
-    {
-        String s = e.getActionCommand();
-
-        if ((s.charAt(0) >= '0' && s.charAt(0) <= '9') || s.charAt(0) == '.') {
-            if (!s1.equals(""))
-                s2 = s2 + s;
-            else
-                s0 = s0 + s;
-
-            l.setText(s0 + s1 + s2);
-        }
-        else if (s.charAt(0) == 'C') {
-            s0 = s1 = s2 = "";
-
-            l.setText(s0 + s1 + s2);
-        }
-        else if (s.charAt(0) == '=') {
-
-            double te;
-
-            // store the value in 1st
-            if (s1.equals("+"))
-                te = (Double.parseDouble(s0) + Double.parseDouble(s2));
-            else if (s1.equals("-"))
-                te = (Double.parseDouble(s0) - Double.parseDouble(s2));
-            else if (s1.equals("/"))
-                te = (Double.parseDouble(s0) / Double.parseDouble(s2));
-            else
-                te = (Double.parseDouble(s0) * Double.parseDouble(s2));
-
-            // set the value of text
-            l.setText(s0 + s1 + s2 + "=" + te);
-
-            // convert it to string
-            s0 = Double.toString(te);
-
-            s1 = s2 = "";
-        }
-        else {
-            // if there was no operand
-            if (s1.equals("") || s2.equals(""))
-                s1 = s;
-                // else evaluate
-            else {
-                double te;
-
-                // store the value in 1st
-                if (s1.equals("+"))
-                    te = (Double.parseDouble(s0) + Double.parseDouble(s2));
-                else if (s1.equals("-"))
-                    te = (Double.parseDouble(s0) - Double.parseDouble(s2));
-                else if (s1.equals("/"))
-                    te = (Double.parseDouble(s0) / Double.parseDouble(s2));
-                else
-                    te = (Double.parseDouble(s0) * Double.parseDouble(s2));
-
-                // convert it to string
-                s0 = Double.toString(te);
-
-                // place the operator
-                s1 = s;
-
-                // make the operand blank
-                s2 = "";
-            }
-
-            // set the value of text
-            l.setText(s0 + s1 + s2);
-        }
-    }
 }
+
+   public static void main(String[]args){
+       list.put(45," Rs/Kg---> Rice \n");
+       list.put(50," Rs/Kg---> Dal \n");
+       list.put(110," Rs/l---> oil   \n");
+       list.put(30," Rs--->    Soap   \n");
+       list.put(90," Rs--->    Shampoo \n");
+       list.put(60," Rs/kg---> Sugar \n");
+       list.put(85," Rs/l--->  CoolDrinks\n");
+       list.put(55," Rs/kg---> Millets\n");
+while(true){
+    int choice;
+    System.out.println();
+    System.out.println("Saiteja's Mart");
+    System.out.println("================================================================");
+    System.out.println("1.Add items to cart\n2.Remove items from cart\n3.Go to Cart\n4.Generate Bill\n5.Exit");
+    System.out.println("Enter your choice: ");
+    choice=s.nextInt();
+    System.out.println("=================================================================");
+    switch (choice){
+        case 1:
+            System.out.println("You selected Add items option! ");
+
+            System.out.println();
+            System.out.println("**************************** GROCERY LIST **********************************");
+                         System.out.println(list);
+            System.out.println("****************************************************************************");
+            System.out.println("Add items and quantity to your cart ");
+            System.out.println();
+
+            String items;
+            System.out.println("Enter Item: ");
+items=s.next();
+            System.out.println("Enter Quantity: ");
+int qantity=s.nextInt();
+            if(items.equalsIgnoreCase("rice")){
+                mylist.put(items,qantity);
+                System.out.println(items+" Successfully added to cart: ");
+                System.out.println();
+                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            }else if(items.equalsIgnoreCase("dal")){
+                mylist.put(items,qantity);
+                System.out.println(items+" Successfully added to cart: ");
+                System.out.println();
+                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
+            }else if(items.equalsIgnoreCase("soap")){
+                mylist.put(items,qantity);
+                System.out.println(items+" Successfully added to cart: ");
+                System.out.println();
+                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
+            }else if(items.equalsIgnoreCase("shampoo")){
+                mylist.put(items,qantity);
+                System.out.println(items+" Successfully added to cart: ");
+                System.out.println();
+                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
+
+            }else if(items.equalsIgnoreCase("oil")) {
+                mylist.put(items, qantity);
+                System.out.println(items + " Successfully added to cart: ");
+                System.out.println();
+                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
+            }
+            else if(items.equalsIgnoreCase("sugar")){
+                mylist.put(items,qantity);
+                System.out.println(items+" Successfully added to cart: ");
+                System.out.println();
+                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
+
+            }else if(items.equalsIgnoreCase("cooldrinks")){
+                mylist.put(items,qantity);
+                System.out.println(items+" Successfully added to cart: ");
+                System.out.println();
+                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
+
+            }else if(items.equalsIgnoreCase("millets")){
+                mylist.put(items,qantity);
+                System.out.println(items+" Successfully added to cart: ");
+                System.out.println();
+                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
+            }
+            break;
+        case 2:
+            if(mylist.isEmpty()){
+                System.out.println("Cart is Empty \nNothing to remove!");
+            }else if(!mylist.isEmpty()){
+                System.out.println("Enter item you want to remove: ");
+                String remove=s.next();
+                mylist.remove(remove);
+                System.out.println(remove+" successfully removed! ");
+            }
+            break;
+        case 3:
+            if(mylist.isEmpty())
+            {
+                System.out.println("Your Cart is Empty! ");
+                System.out.println();
+            } else if (!mylist.isEmpty())
+            System.out.println("Added Cart Items are: ");
+            System.out.println("############################# My Cart ##################################");
+    System.out.println(mylist+"\n");
+            System.out.println("########################################################################");
+break;
+        case 4: {
+sai obj=new sai();
+if(mylist.isEmpty()){
+    System.out.println("Your Cart is Empty! ");
+    System.out.println();
+    break;
+}
+obj.run();
+            System.out.println("Do you want to continue to shop or exit: ");
+            String sh=s.next();
+            if(sh.equalsIgnoreCase("exit")){
+                System.out.println("Thank for the shopping! hava a nice day !");
+                return;
+
+            }
+            break;
+        }
+        case  5:
+            System.out.println("Thanks for Visiting have a nice day!");
+            exit(0);
+        default:
+            System.out.println("You Entered Wrong Option! \nPlease try again! ");
+            break;
+    }
+
+}
+
+}}
